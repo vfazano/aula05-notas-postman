@@ -1,0 +1,31 @@
+{
+  "info": {
+    "_postman_id": "aula05-notas-crud",
+    "name": "Aula 05 - API de notas",
+    "description": "CRUD de notas em data.json. Defina a variável baseUrl, por exemplo http://localhost:3000, e use a propriedade id retornada para :id.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:3000" }, { "key": "noteId", "value": "SUBSTITUA_PELO_ID" }],
+  "item": [
+    {
+      "name": "Create - Criar nota",
+      "description": "Cria uma nota. Esperado: 201 com id, titulo, texto e criadoEm; 400 para campos vazios.",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Minha primeira nota\",\n  \"texto\": \"Conteúdo da nota\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{baseUrl}}/api/notes" }
+    },
+    {
+      "name": "Read - Listar notas",
+      "description": "Lista todas as notas. Esperado: 200 com uma lista JSON.",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/notes" }
+    },
+    {
+      "name": "Update - Editar nota",
+      "description": "Substitui titulo e texto da nota identificada. Esperado: 200 com a nota atualizada, 400 para campos inválidos ou 404 para ID inexistente.",
+      "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"Título atualizado\",\n  \"texto\": \"Texto atualizado\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{baseUrl}}/api/notes/{{noteId}}" }
+    },
+    {
+      "name": "Delete - Excluir nota",
+      "description": "Exclui a nota identificada. Esperado: 204 sem corpo ou 404 para ID inexistente.",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/api/notes/{{noteId}}" }
+    }
+  ]
+}
